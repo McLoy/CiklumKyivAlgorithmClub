@@ -8,7 +8,6 @@ public class SolutionTest {
     @Test
     public void solution() throws Exception {
         Solution s = new Solution();
-        Assertions.assertThat(s.findPalindroms("abbacbb"));
-
+        Assertions.assertThat(s.findPalindroms("abbacbb")).isEqualTo(3);
     }
 }

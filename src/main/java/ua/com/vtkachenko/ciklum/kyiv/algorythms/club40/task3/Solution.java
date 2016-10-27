@@ -19,8 +19,33 @@ public class Solution {
 
     public int findPalindroms(String a){
 
+        char[] s = a.toCharArray();
+        int n = s.length;
+        boolean[][] isPal = new boolean[n][n];
+        for (int i = 0; i < n; i++) {
+            isPal[i][i] = true;
+        }
+        for (int i = 0; i < n-1; i++) {
+            isPal[i][i+1] = s[i] == s[i+1];
+        }
+        for (int w = 2; w < n; w++) {
+            for (int i = 0; i + w < n; i++) {
+                isPal[i][i+w] = s[i] == s[i+w]&&isPal[i+1][i+w-1];
+            }
+        }
+        int[] res = new int[n];
 
-
-        return 0;
+        for (int i = 0; i < n; i++) {
+            if (isPal[0][i]) res[i] = 1;
+            else {
+                res[i] = i+1;
+                for (int j = 0; j <= i; j++) {
+                    if (isPal[j][i]){
+                        res[i] = Math.min(res[i], 1 + res[j - 1]);
+                    }
+                }
+            }
+        }
+        return res[n-1];
     }
 }
