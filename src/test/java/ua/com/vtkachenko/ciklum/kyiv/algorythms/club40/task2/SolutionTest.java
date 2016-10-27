@@ -9,5 +9,6 @@ public class SolutionTest {
     public void solution() throws Exception {
         Solution s = new Solution();
         Assertions.assertThat(s.findPalindrom(1711)).isEqualTo(1771);
+        Assertions.assertThat(s.findPal("1711")).isEqualTo("1771");
     }
 }
