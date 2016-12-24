@@ -1,6 +1,5 @@
 package ua.com.vtkachenko.ciklum.lviv.algorythms.club3.task2;
 
-import java.util.Scanner;
 /* //Union Find
 not solved
 У фермера Львівського, бізнес пішов вгору, і тепер йому треба багато подорожувати літаком і вкладати угоди з міжнародними партнерами по всьому світу.
@@ -45,89 +44,87 @@ NO
 YES
 YES
 NO
+-------
+INPUT
+4
+1 2
+2 3
+3 4
+2
+1 3 2
+1 4 1
  */
+import java.util.Scanner;
+
 public class Solution {
-//    public static void main(String[] args) {
-//    Scanner in = new Scanner(System.in);
-//
-//    int M = in .nextInt();
-//    int[] from = new int[M;
-//        int[] to = new int[M];
-//
-//
-//        for (int i = 0; i <= M-1 ; i++) {
-//            from[i] = in.nextInt();
-//            to[i] = in.nextInt();
-//
-//        }
-//
-//        int P = in.nextInt();
-//
-//        for (int j = 0; j <= P; j++) {
-//            int X = in.nextInt();
-//            int Y = in.nextInt();
-//            int V = in.nextInt();
-//
-//            UF uf = new UF(M+2);
-//
-//            for (int k = 0; k <= M-1 ; k++) {
-//                if (k != V){
-//                    uf.union(from[k], to[k]);
-//                }
-//            }
-//            System.out.println(uf.connected(X,Y)?"YES":"NO");
-//
-//        }
-//
-//    }
-//
-//    public static class UF{
-//        int[] tree;
-//        int[] size;
-//
-//        public UF(int capacity){
-//            this.tree = new int[capacity];
-//            this.size = new int[capacity];
-//
-//            for (int i = 0; i < tree.length; i++) {
-//                tree[i] = i;
-//                size[i] = 1;
-//            }
-//        }
-//
-//        int root(int i){
-//            while (tree[i] != i){
-//                i = tree[i];
-//            }
-//            return i;
-//        }
-//
-//        public boolean connected(int i, int j){
-//            return root(i) == root(j);
-//        }
-//
-//        public void union(int i, int j){
-//            i = root(i);
-//            j = root(j);
-//
-////            if (tree[i] == 0) {
-////                tree[i] = i;
-////                size[i] = 1;
-////            }
-////            if (tree[j] == 0) {
-////                tree[j] = i;
-////                size[j] = 1;
-////            }
-//
-//            if (size[i] < size[j]){
-//                tree[i] = j;
-//                size[j] += size[i];
-//            } else {
-//                tree[j] = i;
-//                size[i] += size[j];
-//            }
-//        }
-//    }
+    public static void main(String[] args) {
 
+        Scanner in = new Scanner(System.in);
 
+        int M = in.nextInt();
+        int[] from = new int[M];
+        int[] to = new int[M];
+
+        for (int i = 1; i <= M - 1; i++) {
+            from[i] = in.nextInt();
+            to[i] = in.nextInt();
+        }
+
+        int P = in.nextInt();
+
+        for (int j = 1; j <= P; j++) {
+            int flightFrom = in.nextInt();
+            int flightTo = in.nextInt();
+            int canceled = in.nextInt();
+
+            UF uf = new UF(M + 2);
+
+            for (int k = 1; k <= M - 1; k++) {
+                if (k != canceled) {
+                    uf.union(from[k], to[k]);
+                }
+            }
+            System.out.println(uf.connected(flightFrom, flightTo) ? "YES" : "NO");
+        }
+    }
+
+    public static class UF {
+        int[] tree;
+        int[] size;
+
+        public UF(int capacity) {
+            this.tree = new int[capacity];
+            this.size = new int[capacity];
+        }
+
+        public int root(int i) {
+            while (tree[i] != i) {
+                i = tree[i];
+            }
+            return i;
+        }
+
+        public boolean connected(int i, int j) {
+            return root(i) == root(j);
+        }
+
+        public void union(int i, int j) {
+            if (tree[i] == 0) {
+                tree[i] = i;
+                size[i] = 1;
+            }
+            if (tree[j] == 0) {
+                tree[j] = i;
+                size[j] = 1;
+            }
+
+            if (size[i] < size[j]) {
+                tree[i] = j;
+                size[j] += size[i];
+            } else {
+                tree[j] = i;
+                size[i] += size[j];
+            }
+        }
+    }
 }
