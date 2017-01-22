@@ -24,25 +24,22 @@ Output
 Пояснення : Є лише 2 пари числел (5, 1) і (2, 4) сума яких дає 6.
 
  */
-public class Solution { //Tests failed
+public class Solution {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         int n = in.nextInt();
-        int s = in.nextInt();
+        long s = in.nextLong();
 
         int fin = 0;
-        int[] digits = new int[n];
+        long[] digits = new long[n];
         for (int i = 0; i < n; i++) {
-            digits[i] = in.nextInt();
+            digits[i] = in.nextLong();
         }
 
-
-        for (int i = n/2; i > 0; i--) {
-            if (digits[i] + digits[i+1] == s) {
-                fin++;
-            }
-            if (digits[i] + digits[i-1] == s) {
-                fin++;
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = i + 1; j < n; j++) {
+                if (digits[i] + digits[j] == s)
+                    fin++;
             }
         }
 
