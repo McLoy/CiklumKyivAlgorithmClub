@@ -27,29 +27,26 @@ Output
 5
 -2 -4 -3 -1 -2
 */
-public class Solution { //not solved
+public class Solution {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         int n = in.nextInt();
 
         int max = Integer.MIN_VALUE;
-        List<Integer> digits = new ArrayList<>();
+        int[] digits = new int[n];
         for (int i = 0; i < n; i++) {
-            digits.add(i, in.nextInt());
+            digits[i] = in.nextInt();
         }
+    System.out.println(maxSubArray(digits));
+    }
 
-        int summ = 0;
-        List<Integer> pid;
-        max = Math.max(digits.get(0), max);
-        for (int i = 0, j = 1; i < n; i++, j++) {
-            if (j>=n-i) break;
-                pid = digits.subList(i, i + j);
-                summ = 0;
-                for (int k = 0; k < pid.size(); k++) {
-                    summ += pid.get(k);
-                }
-                max = Math.max(summ, max);
+    public static int maxSubArray(int[] nums) {
+        int maxSum = nums[0];
+        int sum = nums[0];
+        for (int i = 1; i < nums.length; i++) {
+            sum = Math.max(sum + nums[i], nums[i]);
+            maxSum = Math.max(maxSum, sum);
         }
-    System.out.println(max);
+        return maxSum;
     }
 }
