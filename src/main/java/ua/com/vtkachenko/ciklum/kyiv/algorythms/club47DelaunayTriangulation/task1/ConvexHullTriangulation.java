@@ -19,6 +19,7 @@ public class ConvexHullTriangulation extends AbstractTriangulation {
     
     public static void main(String[] args) {
         Draw draw = new Draw();
+//        List<Point>
     }
     
     @Override
@@ -36,14 +37,24 @@ public class ConvexHullTriangulation extends AbstractTriangulation {
             List<Segment> newHull = GrahamScan.convexHull(points.sublist(0, i));
 
             for (int j = 0; j < prevHull.size(); j++) {
-                Segment prevSeg = prevHull.get(j);
-                Point newPoint = newHull.get(j+1).end();
-                while (!prevSeg.equals(newHull.get(j+2)) && j<prevHull.size()){
-                    j++;
-//                    Segment newSeg = newHull.get(j);
-                    prevSeg = prevHull.get(j);
+
+                if (!prevHull.get(j).equals(newHull.get(j))){
+                    Point newPoint = newHull.get(j).end();
+                for (int k = j; !newHull.get(j+2).equals(prevHull.get(k)) && k < prevHull.size(); k++) {
+                    Segment prevSeg = prevHull.get(k);
                     addTriangle(new Triangle(newPoint, prevSeg.start(), prevSeg.end()));
                 }
+                    break;
+                }
+
+//                Segment prevSeg = prevHull.get(j);
+//                Point newPoint = newHull.get(j+1).end();
+//                while (!prevSeg.equals(newHull.get(j+2)) && j<prevHull.size()){
+//                    j++;
+////                    Segment newSeg = newHull.get(j);
+//                    prevSeg = prevHull.get(j);
+//                    addTriangle(new Triangle(newPoint, prevSeg.start(), prevSeg.end()));
+//                }
             }
         }
         
