@@ -47,15 +47,7 @@ public class Solution {
 
      Solution solution = new Solution();
      System.out.println(solution.count(3, new int[]{2,2,1,3}, new int[]{2,2,3,1}));
-//        for (int i = 0; i < ; i++) {
-//
-//        }
     }
-//    int[] dx = new int[]{2,2,1,3};
-//    int[] dy = new int[]{2,2,3,1};
-//    int n = 4;
-//
-//
 //    int xSteps = n-x > (n+1)/2 ? x : n-x;
 //    int ySteps = n-y > (n+1)/2 ? y : n-y;
 
